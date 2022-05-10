@@ -17,6 +17,13 @@ jobs:
         with:
           dotnet-version: '5.0.x'
       
+      - name: Validate SWAPI operations
+        uses: mandiwise/graphql-operation-validation-action@v1
+        with:
+          schema_location: ${{ github.workspace }}/swapi/schema.graphql
+          base_dir: ${{ github.workspace }}/swapi
+          excluded_paths: schema.graphql
+      
       - name: Restore dependencies
         run: dotnet restore
 
